@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Logged In</title>
+    <script src="" charset="utf-8"></script>
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+    <script src="js/common.js"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- materializeCss -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script type="text/javascript">
+    //Will be called once page is loaded
+    window.onload = function(){
+      getHeader()
+      getFooter()
+
+      // Check for the user
+      firebase.auth().onAuthStateChanged(function(user){
+        if (user){
+          console.log(firebase.auth().currentUser);
+          document.getElementById("user_name").innerHTML = "Hello " + user.displayName;
+          document.getElementById("user_name").classList.add("blue-text");
+          document.getElementById("user_photo").src = user.photoURL;
+        }
+      })
+    };
+
+    // Logout
+    $(document).ready(function(){
+      $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true // Choose whether you can drag to open on touch screens
+      });
+    });
+
+    </script>
+
+
+  </head>
+  <body>
+
+    <ul id="slide-out" class="side-nav">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+
+
+  </body>
+</html>
