@@ -15,13 +15,11 @@
     <!-- materializeCss -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script type="text/javascript">
     //Will be called once page is loaded
     window.onload = function(){
-      getHeader()
-      getFooter()
-      animActivate()
       // Check for the user
       firebase.auth().onAuthStateChanged(function(user){
         if (user){
@@ -35,6 +33,9 @@
 
     // Logout
     $(document).ready(function(){
+      getHeader()
+      getFooter()
+      animationActivate()
       $("#logout_button").click(function(){
         firebase.auth().signOut();
         window.location = "login.html";

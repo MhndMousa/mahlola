@@ -27,22 +27,37 @@ function getHeader(){
   $('header').append(
     $('<nav/>').append(
       $('<div/>',{"class": function(){return "nav-wrapper " + colors.primary}}).append([
-        $('<a/>',{href: "www.google.com", class: "center brand-logo"}).html("Logo"),
-        $('<a/>',{href: "#", "data-activates": "mobile-demo", class: "button-collapse"}).append(
-          $('<i/>', {class: "material-icons", click:function(){$(".button-collapse").sideNav();}}).html("menu")
+        // Logo Picture
+        $('<a/>',{href: "#", class: "center brand-logo"}).html("Logo"),
+
+        // Mobile Menu button
+        $('<a/>',{href: "#", "data-activates": "slide-out-menu", class: "button-collapse"}).append(
+          $('<i/>', {class: "material-icons"}).html("menu")
         ),
-        $('<ul/>',{ id: "nav-mobile", class: "right hide-on-med-and-down "}).append([
-          $('<li/>').append($('<a/>',{ href: "https://www.google.com", class: function(){return colors.text + colors.textAccentHeader}}).html("google")),
-          $('<li/>').append($('<a/>',{ href: "https://www.yahoo.com", class: function(){return colors.text + colors.textAccentHeader} }).html("yahoo")),
-          $('<li/>').append($('<a/>',{ href: "#!", "data-activates": "dropdown1", class: function(){return "dropdown-button " + colors.text + colors.textAccentHeader}}).html("facebook"))
+        // User mobile menu
+        $('<ul/>',{ id: "slide-out-menu", class: function(){return "side-nav "}}).append([
+          $('<li/>').append(
+            $('<div/>', {class:"userView"}).append([
+            $('<div/>', {class:"background"}).append($('<img/>' ,{src: "http://oxygennacdn3.oxygenna.com/wp-content/uploads/2015/11/18.jpg"})),
+            $('<a/>').append($('<img/>', {class: "circle" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
+            $('<a/>').append($('<span/>',{class: "white-text name" }).html("Muhannad Alnemer")),
+            $('<a/>').append($('<span/>',{class: "white-text email" }).html("Muhannad Alnemer")),
+          ])),
+          $('<li/>').append($('<a/>',{ href: "https://www.google.com", class: "waves-effect "}).html("google")),
+          $('<li/>').append($('<a/>',{ href: "https://www.yahoo.com", class: "waves-effect "}).html("yahoo")),
+          $('<li/>').append($('<a/>',{ href: "https://www.facebook.com", class: "waves-effect "}).html("facebook"))
         ]),
-        $('<ul/>',{ id: "mobile-demo", class: function(){return "side-nav "+ colors.primary}}).append([
-          $('<li/>').append($('<a/>',{ href: "https://www.google.com", class: function(){return colors.text + colors.textAccentHeader}}).html("google")),
-          $('<li/>').append($('<a/>',{ href: "https://www.yahoo.com", class: function(){return colors.text + colors.textAccentHeader} }).html("yahoo")),
-          $('<li/>').append($('<a/>',{ href: "https://www.facebook.com", class: function(){return colors.text + colors.textAccentHeader}}).html("facebook"))
+
+
+        // User dropdown button
+        $('<ul/>',{class: "right hide-on-med-and-down "}).append([
+          $('<li/>').append($('<a/>',{ href: "#!", "data-activates": "dropdown1", class: function(){return "dropdown-button " + colors.text + colors.textAccentHeader}}).html("User").append($('<i/>', {class: "material-icons right"}).html("arrow_drop_down"))
+          )
         ]),
+        // User dropdown menu
         $('<ul/>',{ id: "dropdown1", class: "dropdown-content "}).append([
-          $('<li/>').append($('<a/>',{ href: "https://www.facebook.com", class: "red-text text-lighten-1"}).html("تسجيل خروج"))
+          $('<li/>',{class: "divider" }),
+          $('<li/>').append($('<a/>',{class: "red-text text-lighten-1" , id:"logout_button"}).html("تسجيل خروج"))
         ])
       ])
     )
@@ -79,15 +94,15 @@ function getFooter(){
   )
 }
 
-function animActivate() {
+function animationActivate() {
   $(".dropdown-button").dropdown({
-      inDuration: 300,
-       outDuration: 225,
-       constrainWidth: false, // Does not change width of dropdown to that of the activator
-       hover: false, // Activate on hover
-       gutter: 0, // Spacing from edge
        belowOrigin: true, // Displays dropdown below the button
-       stopPropagation: true // Stops event propagation
      });
+     $(".button-collapse").sideNav({
+       menuWidth: 330,
+       draggable: true,
+       closeOnClick: true,
+});
+
 
 }
