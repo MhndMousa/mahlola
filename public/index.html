@@ -21,7 +21,7 @@
     window.onload = function(){
       getHeader()
       getFooter()
-
+      animActivate()
       // Check for the user
       firebase.auth().onAuthStateChanged(function(user){
         if (user){
