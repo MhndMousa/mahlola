@@ -13,59 +13,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- materializeCss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <script src="js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script type="text/javascript">
+
     //Will be called once page is loaded
     window.onload = function(){
-      // Check for the user
-      firebase.auth().onAuthStateChanged(function(user){
-        if (user){
-          console.log(firebase.auth().currentUser);
-          document.getElementById("user_name").innerHTML = "Hello " + user.displayName;
-          document.getElementById("user_name").classList.add("blue-text");
-          document.getElementById("user_photo").src = user.photoURL;
-        }
-      })
-    };
-
-    // Logout
-    $(document).ready(function(){
-      getHeader()
-      getFooter()
-      animationActivate()
-      $("#logout_button").click(function(){
-        firebase.auth().signOut();
-        window.location = "login.html";
+      $(document).ready(function(){
+        initApp()
       });
-    });
-
+    };
     </script>
 
 
   </head>
-  <body>
-    <div class="grey lighten-5">
-
-    <header></header>
+  <body >
+    <div class="grey lighten-4">
+    <mheader></mheader>
     <br>
     <div class="row">
-      <div class="push-s3 col s3">
-        <div class="card">
-          <div class="card-image">
-            <img id="user_photo">
-            <span class="card-title" id="user_name"></span>
+      <div class="container">
+        <div class="col s4">
+          <div class="card-panel">
           </div>
         </div>
-        <div class="col">
-          <button id="logout_button" class="waves-effect waves-light btn" >SIGN THE FUCK OUT!</button>
+        <div class="col s4">
+          <div class="card-panel">
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="card-panel">
+          </div>
         </div>
       </div>
     </div>
-
-    <blah></blah>
+    <mFooter></mFooter>
   </div>
 
   </body>

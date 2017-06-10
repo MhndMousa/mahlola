@@ -13,24 +13,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- materializeCss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <script src="js/materialize.min.js"></script>
 
     <script type="text/javascript">
     //Will be called once page is loaded
     window.onload = function(){
-      getHeader()
-      getFooter()
-
-      // Check for the user
-      firebase.auth().onAuthStateChanged(function(user){
-        if (user){
-          console.log(firebase.auth().currentUser);
-          document.getElementById("user_name").innerHTML = "Hello " + user.displayName;
-          document.getElementById("user_name").classList.add("blue-text");
-          document.getElementById("user_photo").src = user.photoURL;
-        }
-      })
+      initApp();
     };
 
     // Logout

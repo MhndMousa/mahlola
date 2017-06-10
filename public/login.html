@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Screen</title>
 
-    <!-- Icon link -->
-    <link rel="icon" href="https://maxcdn.icons8.com/Share/icon/Logos//google_logo1600.png">
-
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-    <script src="js/common.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
+    <script src="js/common.js"></script>
 
+
+    <link rel="icon" href="https://maxcdn.icons8.com/Share/icon/Logos//google_logo1600.png">
     <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- materializeCss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <script src="js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Page format -->
     <script type="text/javascript">
@@ -72,22 +72,23 @@
 
 
       window.onload =  function(){
-        getHeader()
-        getFooter()
+        initApp()
       }
 
     </script>
 
-  </head>
+</head>
 
 
   <body>
-    <header></header>
+    <div class="grey lighten-5">
+    <mheader></mheader>
     <h1 style ="text-align: center">Hello stranger</h1>
     <h2 style ="text-align: center">Welcome to the most useless login screen ever</h2>
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
     <br><br><br>
-    <blah></blah>
+    <mfooter></mfooter>
+  </div>
   </body>
 </html>
