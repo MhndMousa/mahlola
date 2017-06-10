@@ -45,8 +45,8 @@ function getHeader(){
             $('<div/>', {class:"userView"}).append([
             $('<div/>', {class:"background"}).append($('<img/>' ,{src: "http://oxygennacdn3.oxygenna.com/wp-content/uploads/2015/11/18.jpg"})),
             $('<a/>').append($('<img/>', {class: "circle", id:"user_photo" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
-            $('<a/>').append($('<span/>',{class: "white-text name", id:"user_name"}).html("not mhnd")),
-            $('<a/>').append($('<span/>',{class: "white-text email", id:"user_email" }).html("Muhannad Alnemer")),
+            $('<a/>').append($('<span/>',{class: "white-text name", id:"user_name"}).html("not logged in")),
+            $('<a/>').append($('<span/>',{class: "white-text email", id:"user_email" }).html("no email")),
           ])),
           $('<li/>').append($('<a/>',{ href: "https://www.google.com", class: "waves-effect "}).html("google")),
           $('<li/>').append($('<a/>',{ href: "https://www.yahoo.com", class: "waves-effect "}).html("yahoo")),
@@ -134,7 +134,7 @@ function initApp() {
   // Activate LogOut
   $("#logout_button").click(function(){
     firebase.auth().signOut();
-    window.location = window.location;
+    window.location.reload();
   });
 
 
