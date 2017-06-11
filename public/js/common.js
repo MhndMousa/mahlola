@@ -17,7 +17,7 @@ firebase.initializeApp(config);
 // Global colors
 var colors = {
   text : "grey-text ",
-  primary : "orange darken-4",
+  primary : "amber darken-3",
   textAccent : "text-lighten-1 ",
   textAccentHeader : "text-lighten-4 "
 }
@@ -26,77 +26,91 @@ var colors = {
 // Formats Header
 function getHeader(){
   $('mheader').append(
-    $('<nav/>').append(
-      $('<div/>',{"class": "nav-wrapper " + colors.primary}).append([
+    $('<nav>', {class:"nav-extended " + colors.primary}).append([
+      $('<div>',{"class": "nav-wrapper "}).append([
         // Logo Picture
-        $('<a/>',{href: "#", class: "center brand-logo"}).html("Logo"),
+        $('<a>',{href: "#", class: "center brand-logo"}).html("Logo"),
 
         /*
         Menu
         */
         // Menu button
-        $('<a/>',{href: "#", "data-activates": "slide-out-menu",id:"slide-out-button", class: "button-collapse show-on-large"}).append(
-          $('<i/>', {class: "material-icons"}).html("menu")
+        $('<a>',{href: "#", "data-activates": "slide-out-menu",id:"slide-out-button", class: "button-collapse show-on-large"}).append(
+          $('<i>', {class: "material-icons"}).html("menu")
         ),
         // TODO: Hide user menu for not logged in users
         // User mobile menu
-        $('<ul/>',{ id: "slide-out-menu", class: " side-nav"}).append([
-          $('<li/>').append(
-            $('<div/>', {class:"userView"}).append([
-            $('<div/>', {class:"background"}).append($('<img/>' ,{src: "http://oxygennacdn3.oxygenna.com/wp-content/uploads/2015/11/18.jpg"})),
-            $('<a/>').append($('<img/>', {class: "circle", id:"user_photo" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
-            $('<a/>').append($('<span/>',{class: "white-text name", id:"user_name"}).html("not logged in")),
-            $('<a/>').append($('<span/>',{class: "white-text email", id:"user_email" }).html("no email")),
+        $('<ul>',{ id: "slide-out-menu", class: "side-nav"}).append([
+          $('<li>').append(
+            $('<div>', {class:"userView"}).append([
+            $('<div>', {class:"background"}).append($('<img>' ,{src: "http://oxygennacdn3.oxygenna.com/wp-content/uploads/2015/11/18.jpg"})),
+            $('<a>').append($('<img>', {class: "circle", id:"user_photo" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
+            $('<a>').append($('<span>',{class: "white-text name", id:"user_name"}).html("not logged in")),
+            $('<a>').append($('<span>',{class: "white-text email", id:"user_email" }).html("no email")),
           ])),
-          $('<li/>').append($('<a/>',{ href: "https://www.google.com", class: "waves-effect "}).html("google")),
-          $('<li/>').append($('<a/>',{ href: "https://www.yahoo.com", class: "waves-effect "}).html("yahoo")),
-          $('<li/>').append($('<a/>',{ href: "https://www.facebook.com", class: "waves-effect "}).html("facebook"))
+          $('<li>').append($('<a>',{ href: "https://www.google.com", class: "waves-effect arabic"}).html("اعلن الان").append($('<i>',{class:"material-icons"}).html("get_app"))),
+          $('<li>').append($('<a>',{ href: "https://www.yahoo.com", class: "waves-effect arabic"}).html("الاعدادات").append($('<i>',{class:"material-icons"}).html("settings"))),
+          $('<li>',{class: "divider"}),
+          $('<li>').append($('<a>',{ id:"logout_button", class: "waves-effect red-text text-darken-2 arabic"}).html("تسجيل خروج"))
         ]),
 
         /*
         Drop Down
         */
         // User dropdown button
-        $('<ul/>',{class: "right hide-on-med-and-down "}).append([
-          $('<li/>').append($('<a/>',{ href: "#!", "data-activates": "dropdown1", class: "dropdown-button "+ colors.text + colors.textAccentHeader}).html($('<i/>', {class: "material-icons"}).html("account_circle")).append([
+        // $('<ul/>',{class: "right hide-on-med-and-down "}).append([
+          // $('<li/>').append($('<a/>',{ href: "#!", "data-activates": "dropdown1", class: "dropdown-button "+ colors.text + colors.textAccentHeader}).html($('<i/>', {class: "material-icons"}).html("account_circle")).append([
             // $('<a/>').append($('<img/>', {class: "circle" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
             // $('<i/>', {class: "material-icons right"}).html("arrow_drop_down")
-          ]))
-        ]),
+          // ]))
+        // ]),
         // User dropdown menu
-        $('<ul/>',{ id: "dropdown1", class: "dropdown-content"}).append([
+        // $('<ul/>',{ id: "dropdown1", class: "dropdown-content"}).append([
           // $('<li/>').append($('<a/>',{class: "red-text text-lighten-1" , id:"user_name"}).html("something")),
-          $('<li/>',{class: "divider"}),
-          $('<li/>').append($('<a/>',{class: "red-text text-lighten-1" , id:"logout_button"}).html("تسجيل خروج"))
+          // $('<li/>',{class: "divider"}),
+          // $('<li/>').append($('<a/>',{class: "red-text text-lighten-1" , id:"logout_button"}).html("تسجيل خروج"))
+        // ])
+      ]),
+      $('<div>',{class: "nav-content arabic z-depth-1"}).append(
+        $('<ul>',{class: "tabs tabs-transparent"}).append([
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#test"}).html("اعمال منزلية")),
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#test2"}).html("اعمال بطريق")),
+          $('<li>',{class: "tab disabled"}).append($('<a>',{href: "#"}).html("اعمال هندسية")),
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال الكترونية")),
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 2")),
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 3")),
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 4")),
+          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 5")),
+
         ])
-      ])
-    )
+      ),
+    ])
   );
 }
 
 // Formats footer
 function getFooter(){
   $('mFooter').append(
-    $('<footer/>',{ class : "page-footer " + "grey darken-2"} ).append([
-      $('<div/>', { class: "container" }).append(
-        $('<div/>', {class : "row"}).append([
-          $('<div/>', {class: "col l6 s12"}).append([
-            $('<h5/>', {class:  colors.text + colors.textAccentHeader}).html("Footer Content"),
-            $('<p/>', {class:  colors.text + colors.textAccent }).html("You can use rows and columns here to organize your footer content")
+    $('<footer>',{ class : "page-footer " + "grey darken-2"} ).append([
+      $('<div>', { class: "container" }).append(
+        $('<div>', {class : "row"}).append([
+          $('<div>', {class: "col l6 s12"}).append([
+            $('<h5>', {class:  colors.text + colors.textAccentHeader}).html("Footer Content"),
+            $('<p>', {class:  colors.text + colors.textAccent }).html("You can use rows and columns here to organize your footer content")
           ]),
-          $('<div/>', {class: "col l4 offset-l2 s12"}).append([
-            $('<h5/>', {class:  colors.text +colors.textAccentHeader}).html("Links"),
+          $('<div>', {class: "col l4 offset-l2 s12"}).append([
+            $('<h5>', {class:  colors.text +colors.textAccentHeader}).html("Links"),
             $('<ul>').append([
-              $('<li/>').append($('<a/>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 1")),
-              $('<li/>').append($('<a/>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 2")),
-              $('<li/>').append($('<a/>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 3")),
-              $('<li/>').append($('<a/>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 4"))
+              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 1")),
+              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 2")),
+              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 3")),
+              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 4"))
             ])
           ])
         ])
       ),
-      $('<div/>', {class: "footer-copyright"}).append(
-        $('<div/>', {class: "container " + colors.text + colors.textAccentHeader}).html("© 2014 Copyright Text").append(
+      $('<div>', {class: "footer-copyright"}).append(
+        $('<div>', {class: "container " + colors.text + colors.textAccentHeader}).html("© 2014 Copyright Text").append(
           $('<a>', {class: "right " + colors.text + colors.textAccentHeader}).html("More Links")
         )
       )
@@ -113,6 +127,8 @@ function animationActivate() {
     draggable: true,
     closeOnClick: true,
   });
+  $('ul.tabs').tabs();
+
 }
 
  // Start the app
