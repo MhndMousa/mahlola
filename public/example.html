@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Logged In</title>
     <script src="" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
@@ -15,36 +16,91 @@
     <!-- materializeCss -->
     <link rel="stylesheet" href="/css/materialize.min.css">
     <script src="js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/droidarabickufi.css">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
 
-    <script type="text/javascript">
-    //Will be called once page is loaded
-    window.onload = function(){
-      initApp();
-    };
-
-    // Logout
-    // $(document).ready(function(){
-    //   $('.button-collapse').sideNav({
-    //       menuWidth: 300, // Default is 300
-    //       edge: 'left', // Choose the horizontal origin
-    //       closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    //       draggable: true // Choose whether you can drag to open on touch screens
-    //     }
-    //   );
-    // });
-
+    <link rel="stylesheet" href="/css/common.css">
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASvCbX5tmzjv98xhgXpjMh0b2-fGaEygA&callback=initMap">
     </script>
 
 
+    <style media="screen">
+    .arabic{
+      font-family: "Noto Kufi Arabic", roboto;
+      font-size: 14px;
+    }
+    .arabic-bold{
+      font-family: "Noto Kufi Arabic", roboto;
+      font-size: 14px;
+    }
+
+    #map, #map2, #map3{
+      height: 300px;
+      width: 100%;
+      overflow:visible;
+    }
+    </style>
+
+
+    <script type="text/javascript">
+    function initMap() {
+      var uluru = {lat: 26.319322, lng: 50.228042};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12  ,
+        center: uluru,
+        disableDefaultUI: true,
+        draggable: true,
+        zoomControl: true
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+      var map2 = new google.maps.Map(document.getElementById('map2'), {
+        zoom: 12  ,
+        center: uluru,
+        disableDefaultUI: true,
+        draggable: true,
+        zoomControl: true
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map2
+      });
+      setTimeout(function(){
+        var center = map.getCenter();
+        var center = map2.getCenter();
+        google.maps.event.trigger(map, "resize");
+        google.maps.event.trigger(map2, "resize");
+        map.setCenter(center)
+        map2.setCenter(center)
+      },400)
+    }
+
+    // function reloadMap() {
+    //   google.maps.event.trigger(map, "resize");
+    //   console.log("Map should reaload");
+    // }
+    //Will be called once page is loaded
+    </script>
   </head>
   <body>
 
-    <ul id="slide-out" class="side-nav">
-    <li><a href="#!">First Sidebar Link</a></li>
-    <li><a href="#!">Second Sidebar Link</a></li>
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-
-
+    <nav class="nav-extended amber darken-4">
+      <div class="nav-content arabic z-depth-1">
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><a href="#test1">Test 1</a></li>
+          <li class="tab"><a href="#test2">Test 2</a></li>
+          <li class="tab disabled"><a href="#test3">Disabled Tab</a></li>
+          <li class="tab"><a class="active" href="#test4">Test 4</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="test1" class="col s6">Test 1</div>
+    <div id="test2" class="col s6">Test 2</div>
+    <div id="test3" class="col s12">Test 3</div>
+    <div id="test4" class="col s12">Test 4</div>
   </body>
 </html>
