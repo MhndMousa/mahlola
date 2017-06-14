@@ -15,12 +15,15 @@
 
     <link rel="icon" href="https://maxcdn.icons8.com/Share/icon/Logos//google_logo1600.png">
     <!-- jquery -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- materializeCss -->
     <link rel="stylesheet" href="/css/materialize.min.css">
     <script src="js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Arabic Font -->
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
 
     <!-- Page format -->
     <script type="text/javascript">
@@ -74,19 +77,20 @@
       window.onload =  function(){
         initApp()
       }
-
     </script>
 
 </head>
 
 
-  <body>
+  <body class="arabic">
     <div class="grey lighten-5">
     <mheader></mheader>
-    <h1 style ="text-align: center">Hello stranger</h1>
-    <h2 style ="text-align: center">Welcome to the most useless login screen ever</h2>
+    <br><br>
+    <h3  style ="text-align: center">اهلاً بك في موقع الاحلام</h3>
+    <h4  style ="text-align: center">اقلط اقلط</h4>
+    <br>
     <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
+    <div id="loader">جاري التحميل</div>
     <br><br><br>
     <mfooter></mfooter>
   </div>
