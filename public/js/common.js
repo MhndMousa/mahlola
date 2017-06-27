@@ -13,79 +13,132 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
 // Global colors
 var colors = {
   text : "grey-text ",
-  primary : "amber darken-3",
+  primary : "amber darken-3 ",
   textAccent : "text-lighten-1 ",
   textAccentHeader : "text-lighten-4 "
 }
 
-
 // Formats Header
-function getHeader(){
+function getNav(){
+
   $('mheader').append(
     $('<nav>', {class:"nav-extended " + colors.primary}).append([
-      $('<div>',{"class": "nav-wrapper "}).append([
+      $('<div>',{class: "nav-wrapper "}).append(
         // Logo Picture
         $('<a>',{href: "#", class: "center brand-logo"}).html("Logo"),
-
-        /*
-        Menu
-        */
-        // Menu button
-        $('<a>',{href: "#", "data-activates": "slide-out-menu",id:"slide-out-button", class: "button-collapse show-on-large"}).append(
-          $('<i>', {class: "material-icons"}).html("menu")
-        ),
-        // TODO: Hide user menu for not logged in users
-        // User mobile menu
-        $('<ul>',{ id: "slide-out-menu", class: "side-nav"}).append([
-          $('<li>').append(
-            $('<div>', {class:"userView"}).append([
-            $('<div>', {class:"background"}).append($('<img>' ,{src: "http://oxygennacdn3.oxygenna.com/wp-content/uploads/2015/11/18.jpg"})),
-            $('<a>').append($('<img>', {class: "circle", id:"user_photo" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
-            $('<a>').append($('<span>',{class: "white-text name", id:"user_name"}).html("not logged in")),
-            $('<a>').append($('<span>',{class: "white-text email", id:"user_email" }).html("no email")),
-          ])),
-          $('<li>').append($('<a>',{ href: "https://www.google.com", class: "waves-effect arabic"}).html("اعلن الان").append($('<i>',{class:"material-icons"}).html("get_app"))),
-          $('<li>').append($('<a>',{ href: "https://www.yahoo.com", class: "waves-effect arabic"}).html("الاعدادات").append($('<i>',{class:"material-icons"}).html("settings"))),
-          $('<li>',{class: "divider"}),
-          $('<li>').append($('<a>',{ id:"logout_button", class: "waves-effect red-text text-darken-2 arabic"}).html("تسجيل خروج"))
-        ]),
-
-        /*
-        Drop Down
-        */
-        // User dropdown button
-        // $('<ul/>',{class: "right hide-on-med-and-down "}).append([
-          // $('<li/>').append($('<a/>',{ href: "#!", "data-activates": "dropdown1", class: "dropdown-button "+ colors.text + colors.textAccentHeader}).html($('<i/>', {class: "material-icons"}).html("account_circle")).append([
-            // $('<a/>').append($('<img/>', {class: "circle" ,src:"https://cdn.dribbble.com/users/869811/screenshots/3105584/dribbble_shot_12_1x.png"})),
-            // $('<i/>', {class: "material-icons right"}).html("arrow_drop_down")
-          // ]))
-        // ]),
-        // User dropdown menu
-        // $('<ul/>',{ id: "dropdown1", class: "dropdown-content"}).append([
-          // $('<li/>').append($('<a/>',{class: "red-text text-lighten-1" , id:"user_name"}).html("something")),
-          // $('<li/>',{class: "divider"}),
-          // $('<li/>').append($('<a/>',{class: "red-text text-lighten-1" , id:"logout_button"}).html("تسجيل خروج"))
-        // ])
-      ]),
-      $('<div>',{class: "nav-content arabic z-depth-1"}).append(
-        $('<ul>',{class: "tabs tabs-transparent"}).append([
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#test"}).html("اعمال منزلية")),
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#test2"}).html("اعمال بطريق")),
-          $('<li>',{class: "tab disabled"}).append($('<a>',{href: "#"}).html("اعمال هندسية")),
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال الكترونية")),
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 2")),
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 3")),
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 4")),
-          $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 5")),
-
-        ])
-      ),
+      )
     ])
   );
+
+}
+
+// Formats tabs bellow the nav
+function getTabs() {
+  $('.nav-extended').append(
+    $('<div>',{class: "nav-content arabic z-depth-1"}).append(
+      $('<ul>',{class: "tabs tabs-transparent"}).append([
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#test"}).html("اعمال منزلية")),
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#test2"}).html("اعمال بطريق")),
+        $('<li>',{class: "tab disabled"}).append($('<a>',{href: "#"}).html("اعمال هندسية")),
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال الكترونية")),
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 2")),
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 3")),
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 4")),
+        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 5")),
+
+      ])
+    )
+  )
+}
+
+// Dectects weather a user logged in or not and formats side nav accordingly
+function getSideNav() {
+
+  // Getnav() and append a side nav inside of it
+  $('.nav-wrapper').append(
+    $('<a>',{href: "#", "data-activates": "slide-out-menu",id:"slide-out-button", class: "button-collapse show-on-large"}).append(
+      $('<i>', {class: "material-icons"}).html("menu")
+    ),
+    // User Side menu
+    $('<ul>',{ id: "slide-out-menu", class: "side-nav "}).append(
+      $('<li>').append(
+        $('<div>', {class:"userView"}).append([
+          $('<div>', {class:"background", id: "side-nav-background"}).append($('<img>' ,{src: "https://4.bp.blogspot.com/--NkLOnsQtMc/Voe2VuTrHgI/AAAAAAAAxrE/qV7WcTpRxik/s1600/Materail_wallpaper2.png"})),
+          $('<a>').append($('<img>', {class: "circle", id:"user_photo" ,src:"https://www.nct.org.au/wp-content/themes/Nature%20Conservation%20Trust/img/user_image_placeholder.jpg"})),
+          $('<a>').append($('<span>',{class: "white-text name", id:"user_name"}).html("no display name")),
+          $('<a>').append($('<span>',{class: "white-text email", id:"user_email" }).html("no email")),
+        ]))
+      )
+    )
+
+  firebase.auth().onAuthStateChanged(function(user){
+    //if the user is logged in, create a side nav with his info
+    if (user){
+      var ref = firebase.database().ref(`users/${user.uid}`)
+
+      var value = ref.on("value",function(snap){
+        $("#user_photo").attr("src",snap.val().photoURL)
+        $("#user_email").html(snap.val().email);
+        $("#user_name").html(snap.val().displayName);
+      })
+
+      // Menu Button
+      $('#slide-out-menu').append([
+        $('<li>').append($('<a>',{ href: "post.html", class: "waves-effect arabic"}).html("اعلن الان").append($('<i>',{class:"material-icons"}).html("get_app"))),
+        $('<li>').append($('<a>',{ href: "settings.html", class: "waves-effect arabic"}).html("الاعدادات").append($('<i>',{class:"material-icons"}).html("settings"))),
+        $('<li>',{class: "divider"}),
+        $('<li>').append($('<a>',{ id:"logout_button", onclick:"firebase.auth().signOut(); window.location.reload();", class: "waves-effect red-text text-darken-2 arabic"}).html("تسجيل خروج"))
+      ])
+      getFloatingButton()
+    }
+    //if the user is not logged in, create another side nav with no iformation
+    else{
+
+      // Delete side nav and create a login button
+      $('#slide-out-menu').remove()
+      $('#slide-out-button').remove()
+      getLoginButton()
+    }
+    animationActivate()
+  })
+}
+
+// Formats User drop down menu
+function getLoginButton(){
+  /*
+  Drop Down
+  */
+  // User login button
+  $('.nav-wrapper').append(
+    $('<ul/>',{class: "right"}).append(
+      $('<li/>').append($('<a/>',{ href: "login.html", class: "dropdown-button "+ colors.text + colors.textAccentHeader}).html("تسجيل الدخول"))
+    )
+  )
+}
+
+// Formats floating Button
+function getFloatingButton() {
+  $('body').append(
+    $('<div>',{class: "fixed-action-btn toolbar"}).append([
+      $('<a>', {class: "btn-floating btn-large blue-grey hoverable"}).append(
+        $('<i>', {class: "material-icons waves-effect waves-light"}).html('publish')
+        // $('<i>').html("اعلن")
+      ),
+      $('<ul>').append([
+        $('<li>', {class: "waves-light waves-effect"}).append(
+          // $('<a>').append($('<i>', {class:"material-icons"}).html("ابحث عن احد"))
+          $('<a>').html("اعلن عن عمل")
+        ),
+        $('<li>', {class: "waves-light waves-effect"}).append(
+          $('<a>').html("اعلن عن خبرة")
+          // $('<a>').append($('<i>', {class:"material-icons"}).html("احد يبحث عنك"))
+        )
+      ])
+    ])
+  )
 }
 
 // Formats footer
@@ -118,6 +171,7 @@ function getFooter(){
   )
 }
 
+// Start the all animation on page
 function animationActivate() {
   $(".dropdown-button").dropdown({
     belowOrigin: true, // Displays dropdown below the button
@@ -131,19 +185,25 @@ function animationActivate() {
 
 }
 
- // Start the app
-function initApp() {
-  getHeader()
-  getFooter()
-  animationActivate()
+// Changes the arabic font to Noto Kufi
+function arabify(){
+  $('body').addClass("arabic")
+}
 
-  // Pull user Data
+function initApp(){
+ // Start the app
+  arabify()
+  getNav()
+  getFooter()
+  getTabs()
+  // getDropDown()
+  getSideNav()
+  // animationActivate()
+
+
   firebase.auth().onAuthStateChanged(function(user){
     if (user){
       console.log(firebase.auth().currentUser);
-      $("#user_name").html(user.displayName);
-      $("#user_photo").attr("src",user.photoURL)
-      $("#user_email").html(user.email);
     }
   })
 
@@ -152,6 +212,4 @@ function initApp() {
     firebase.auth().signOut();
     window.location.reload();
   });
-
-
 }
