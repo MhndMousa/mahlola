@@ -1,98 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
 
-    <meta charset=utf-8 />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Screen</title>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Mahlola</title>
 
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
-    <script src="js/common.js"></script>
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.0.0/firebaseui.css" />
+  <script src="js/common.js"></script>
+
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- materializeCss -->
+  <link rel="stylesheet" href="/css/materialize.css">
+  <script src="js/materialize.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Arabic Font -->
+  <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
+
+  <!-- Firebase login view -->
+  <script type="text/javascript">
+    window.onload =  function(){
+      $(document).ready(function(){
+        arabify()
+        getNav()
+        getFooter()
+      })
+      firebase.auth().onAuthStateChanged(function(user){
+        if (user) {
+          window.location.replace("static")
+        }
+        else {
+          // FirebaseUI config.
+          var uiConfig = {
+            callbacks: {
+              signInSuccess: function(currentUser, credential, redirectUrl) {
+                // Do something.
+                // Return type determines whether we continue the redirect automatically
+                return true;
+              },
+              uiShown: function() {
+                // The widget is rendered.
+                // Hide the loader.
+                document.getElementById('loader').style.display = 'none';
+              }
+            },
+            credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+            // Query parameter name for mode.
+            queryParameterForWidgetMode: 'mode',
+            // Query parameter name for sign in success url.
+            queryParameterForSignInSuccessUrl: 'signInSuccessUrl',
+
+            signInFlow: 'popup',
+            signInSuccessUrl: "static.html",
+            signInOptions: [
+              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+              {
+                provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                // Whether the display name should be displayed in the Sign Up page.
+                requireDisplayName: true
+              },
+              {
+                provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+                recaptchaParameters: {
+                  type: 'image',
+                  size: 'invisible',
+                  badge: 'bottomleft'
+                }
+              }
+            ],
+            // Terms of service url.
+            tosUrl: '<you-tos-URL>'
+          };
 
 
-    <link rel="icon" href="https://maxcdn.icons8.com/Share/icon/Logos//google_logo1600.png">
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- materializeCss -->
-    <link rel="stylesheet" href="/css/materialize.min.css">
-    <script src="js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+          var ui = new firebaseui.auth.AuthUI(firebase.auth());
+          // The start method will wait until the DOM is loaded.
+          ui.start('#firebaseui-auth-container', uiConfig);
 
-    <!-- Arabic Font -->
-    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
-
-    <!-- Page format -->
-    <script type="text/javascript">
-      // FirebaseUI config.
-      var uiConfig = {
-        callbacks: {
-          signInSuccess: function(currentUser, credential, redirectUrl) {
-            // Do something.
-            // Return type determines whether we continue the redirect automatically
-            return true;
-          },
-          uiShown: function() {
-            // The widget is rendered.
-            // Hide the loader.
-            document.getElementById('loader').style.display = 'none';
-          }
-        },
-        credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
-        // Query parameter name for mode.
-        queryParameterForWidgetMode: 'mode',
-        // Query parameter name for sign in success url.
-        queryParameterForSignInSuccessUrl: 'signInSuccessUrl',
-
-        signInFlow: 'popup',
-        signInSuccessUrl: 'static.html',
-        signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          {
-            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            // Whether the display name should be displayed in the Sign Up page.
-            requireDisplayName: true
-          },
-          {
-            provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-            recaptchaParameters: {
-              type: 'image',
-              size: 'invisible',
-              badge: 'bottomleft'
-            }
-          }
-        ],
-        // Terms of service url.
-        tosUrl: '<you-tos-URL>'
-      };
-
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-      // The start method will wait until the DOM is loaded.
-      ui.start('#firebaseui-auth-container', uiConfig);
-
-
-      window.onload =  function(){
-        initApp()
-      }
-    </script>
+        }
+      })
+    }
+  </script>
 
 </head>
 
 
-  <body class="arabic">
-    <div class="grey lighten-5">
+<body >
+  <div class="grey lighten-5">
     <mheader></mheader>
-    <br><br>
+    <br>
     <h3  style ="text-align: center">اهلاً بك في موقع الاحلام</h3>
     <h4  style ="text-align: center">اقلط اقلط</h4>
     <br>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">جاري التحميل</div>
-    <br><br><br>
+    <div class="row">
+      <div class="col l4 push-l4 m6 push-m3 s10 push-s1">
+        <div class="card blue-grey">
+          <br><br>
+          <div id="firebaseui-auth-container"></div>
+          <div id="loader">جاري التحميل</div>
+          <br><br>
+        </div>
+      </div>
+    </div>
     <mfooter></mfooter>
   </div>
-  </body>
+</body>
 </html>
