@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Edit - Mahlola</title>
+
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script src="../js/common.js"></script>km
+  <script src="./user.js"></script>
+
+  <!-- materializeCss -->
+  <link rel="stylesheet" href="/css/materialize.css">
+  <script src="/js/materialize.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Arabic Font -->
+  <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
+
+  <script type="text/javascript">
+  window.onload = function(){
+    $(document).ready(function(){
+      ref = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`)
+
+      ref.on("value", function(snap){
+        console.log(snap.val());
+      })
+
+    })
+    arabify()
+    getFooter()
+    getNav()
+    getSideNav()
+  }
+
+  </script>
+
+</head>
+<body>
+
+  <mheader></mheader>
+  <br><br>
+  <msettings>
+    <div class="container">
+      <div class="card">
+
+      </div>
+      <div class="card-panel">
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input disabled value="I am not editable" id="uid" type="text" class="validate">
+                <label for="disabled">Id</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s11">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+              <div class="col s1 m1 l1">
+                <!-- <input type="submit" id="password_update" class="btn" name="submit"  value="submit"> -->
+                <a id="password_update" class="btn">reset</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                This is an inline input field:
+                <div class="input-field inline">
+                  <input id="email" type="email" class="validate">
+                  <label for="email" data-error="مًدخل خاطى" data-success="right">Email</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col push-l5 push-m5 push-s7">
+                <input type="submit" class="btn" name="submit"  value="submit">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </msettings>
+  <br><br>
+  <mfooter></mfooter>
+</body>
+</html>
