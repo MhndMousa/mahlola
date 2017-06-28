@@ -1,61 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Logged In</title>
-    <script src="" charset="utf-8"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Logged In</title>
+  <script src="" charset="utf-8"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-    <script src="js/common.js"></script>
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script src="js/common.js"></script>
 
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- materializeCss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- materializeCss -->
+  <link rel="stylesheet" href="/css/materialize.css">
+  <script src="js/materialize.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/droidarabickufi.css">
+  <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
 
-    <script type="text/javascript">
-    //Will be called once page is loaded
-    window.onload = function(){
-      getHeader()
-      getFooter()
+  <link rel="stylesheet" href="/css/common.css">
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASvCbX5tmzjv98xhgXpjMh0b2-fGaEygA&callback=initMap">
+  </script>
 
-      // Check for the user
-      firebase.auth().onAuthStateChanged(function(user){
-        if (user){
-          console.log(firebase.auth().currentUser);
-          document.getElementById("user_name").innerHTML = "Hello " + user.displayName;
-          document.getElementById("user_name").classList.add("blue-text");
-          document.getElementById("user_photo").src = user.photoURL;
-        }
-      })
-    };
 
-    // Logout
-    $(document).ready(function(){
-      $('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 300
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-        draggable: true // Choose whether you can drag to open on touch screens
-      });
+  <style media="screen">
+  .arabic{
+    font-family: "Noto Kufi Arabic", roboto;
+    font-size: 14px;
+  }
+  .arabic-bold{
+    font-family: "Noto Kufi Arabic", roboto;
+    font-size: 14px;
+  }
+
+  #map, #map2, #map3{
+    height: 300px;
+    width: 100%;
+    overflow:visible;
+  }
+  </style>
+
+
+  <script type="text/javascript">
+  function initMap() {
+    var uluru = {lat: 26.319322, lng: 50.228042};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12  ,
+      center: uluru,
+      disableDefaultUI: true,
+      draggable: true,
+      zoomControl: true
     });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });
+    var map2 = new google.maps.Map(document.getElementById('map2'), {
+      zoom: 12  ,
+      center: uluru,
+      disableDefaultUI: true,
+      draggable: true,
+      zoomControl: true
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map2
+    });
+    setTimeout(function(){
+      var center = map.getCenter();
+      var center = map2.getCenter();
+      google.maps.event.trigger(map, "resize");
+      google.maps.event.trigger(map2, "resize");
+      map.setCenter(center)
+      map2.setCenter(center)
+    },400)
+  }
 
-    </script>
+  // function reloadMap() {
+  //   google.maps.event.trigger(map, "resize");
+  //   console.log("Map should reaload");
+  // }
+  //Will be called once page is loaded
+  </script>
+</head>
+<body>
+  <form action="#">
+     <p>
+       <input name="group1" type="radio" id="test1" />
+       <label for="test1">Red</label>
+     </p>
+     <p>
+       <input name="group1" type="radio" id="test2" />
+       <label for="test2">Yellow</label>
+     </p>
+     <p>
+       <input class="with-gap" name="group1" type="radio" id="test3"  />
+       <label for="test3">Green</label>
+     </p>
+     <p>
+       <input name="group1" type="radio" id="test4" disabled="disabled" />
+       <label for="test4">Brown</label>
+     </p>
+   </form>
 
-
-  </head>
-  <body>
-
-    <ul id="slide-out" class="side-nav">
-    <li><a href="#!">First Sidebar Link</a></li>
-    <li><a href="#!">Second Sidebar Link</a></li>
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-
-
-  </body>
+</body>
 </html>

@@ -1,71 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Logged In</title>
-    <script src="" charset="utf-8"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Logged In</title>
+  <script src="" charset="utf-8"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-    <script src="js/common.js"></script>
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script src="js/common.js"></script>
 
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- materializeCss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <!-- materializeCss -->
+  <link rel="stylesheet" href="/css/materialize.css">
+  <script src="js/materialize.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script type="text/javascript">
-    //Will be called once page is loaded
-    window.onload = function(){
-      getHeader()
-      getFooter()
+    <!-- Arabic Font -->
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
 
-      // Check for the user
-      firebase.auth().onAuthStateChanged(function(user){
-        if (user){
-          console.log(firebase.auth().currentUser);
-          document.getElementById("user_name").innerHTML = "Hello " + user.displayName;
-          document.getElementById("user_name").classList.add("blue-text");
-          document.getElementById("user_photo").src = user.photoURL;
-        }
-      })
-    };
 
-    // Logout
+  <script type="text/javascript">
+  //Will be called once page is loaded
+  window.onload = function(){
     $(document).ready(function(){
-      $("#logout_button").click(function(){
-        firebase.auth().signOut();
-        window.location = "login.html";
-      });
+      initApp()
     });
+  };
+  </script>
+</head>
 
-    </script>
 
-
-  </head>
-  <body>
-    <div class="grey lighten-5">
-
-    <header></header>
+<body>
+  <div class="grey lighten-4">
+    <mheader></mheader>
     <br>
-    <div class="row">
-      <div class="push-s3 col s3">
-        <div class="card">
-          <div class="card-image">
-            <img id="user_photo">
-            <span class="card-title" id="user_name"></span>
-          </div>
-        </div>
-        <div class="col">
-          <button id="logout_button" class="waves-effect waves-light btn" >SIGN THE FUCK OUT!</button>
-        </div>
-      </div>
-    </div>
-
-    <blah></blah>
+    <app></app>
+    <mFooter></mFooter>
   </div>
 
-  </body>
+</body>
 </html>
