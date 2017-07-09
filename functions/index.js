@@ -26,6 +26,7 @@ exports.createUserAccount = functions.auth.user().onCreate(event =>{
     photoURL: photoURL,
     email: email,
     displayName: displayName,
-    didTutorial: false
+    didTutorial: false,
+    firstTime: true 
   })
 })
