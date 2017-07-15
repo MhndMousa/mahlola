@@ -1,12 +1,3 @@
- .arabic{
-   font-family: "Noto Kufi Arabic", roboto;
-   font-size: 14px;
- }
- .arabic-bold{
-   font-family: "Noto Kufi Arabic", roboto;
-   font-size: 14px;
- }
-
  /*!
   * Materialize v0.98.2 (http://materializecss.com)
   * Copyright 2014-2015 Materialize
@@ -4438,7 +4429,7 @@
 
  html {
    line-height: 1.5;
-   font-family: "Roboto", sans-serif;
+   font-family: "Noto Kufi Arabic", "Roboto", sans-serif;
    font-weight: normal;
    color: rgba(0, 0, 0, 0.87);
  }

@@ -192,6 +192,7 @@ function arabify(){
   $('body').addClass("arabic")
 }
 
+// Adds a <div class="row"> after 3 ads in ads page
 function addRow() {
   col = 0
   row++
@@ -200,6 +201,7 @@ function addRow() {
   )
 }
 
+// Gets the ads from the database and orders them by time.
 function getAds(){
 
   var posts = firebase.database().ref("posts").orderByKey();
@@ -355,7 +357,7 @@ function startTutorial() {
 
 function userGreeting() {
   firebase.auth().onAuthStateChanged(function(user){
-  console.log(firebase.auth().currentUser);
+
 
     if (user){
       firebase.database().ref(`users/${user.uid}`).once("value").then(function(snap){ // Fine user in Database and greet them
@@ -373,15 +375,18 @@ function userGreeting() {
 
 function initApp(){
  // Start the app
-  arabify()
+  // arabify()
   getNav()
   getFooter()
   getTabs()
   // getDropDown()
   getSideNav()
+  userGreeting()
   // animationActivate()
 
-
+  firebase.auth().onAuthStateChanged(function(user){
+    console.log(user);
+  });
 
 
 
