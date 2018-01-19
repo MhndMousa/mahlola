@@ -210,9 +210,9 @@ function getAds(){
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
       var childData = childSnapshot.val();
-      // console.log(key);
-      // console.log(childData);
-      // console.log(key,childData);
+      console.log(key);
+      console.log(childData);
+      console.log(key,childData);
 
       if (col< 3) col++
       else addRow()
@@ -281,22 +281,22 @@ function getAds(){
 
         }
 
-        //       var uluru = {lat:26.319322 , lng: 26.319322};
-        //       var maps = {}
-        //       var markers = {}
-        //       maps.append(new google.maps.Map(document.getElementById('map'+ row + col), {
-        //         zoom: 12  ,
-        //         center: uluru,
-        //         disableDefaultUI: true,
-        //         draggable: true,
-        //         zoomControl: true
-        //       })
-        //     );
-        //     markers.append(new google.maps.Marker({
-        //       position: uluru,
-        //       map: map
-        //     })
-        //   )
+          //     var uluru = {lat:26.319322 , lng: 26.319322};
+          //     var maps = {}
+          //     var markers = {}
+          //     maps.append(new google.maps.Map(document.getElementById('map'+ row + col), {
+          //       zoom: 12  ,
+          //       center: uluru,
+          //       disableDefaultUI: true,
+          //       draggable: true,
+          //       zoomControl: true
+          //     })
+          //   );
+          //   markers.append(new google.maps.Marker({
+          //     position: uluru,
+          //     map: map
+          //   })
+          // )
       }
 
       createCard(row)

@@ -26,14 +26,9 @@
   <!-- Firebase login view -->
   <script type="text/javascript">
     window.onload =  function(){
-      $(document).ready(function(){
-        arabify()
-        getNav()
-        getFooter()
-      })
       firebase.auth().onAuthStateChanged(function(user){
         if (user) {
-          window.location.replace("static")
+          window.location.replace("index.html")
         }
         else {
           // FirebaseUI config.
@@ -57,21 +52,13 @@
             queryParameterForSignInSuccessUrl: 'signInSuccessUrl',
 
             signInFlow: 'popup',
-            signInSuccessUrl: "static.html",
+            signInSuccessUrl: "index.html",
             signInOptions: [
               firebase.auth.GoogleAuthProvider.PROVIDER_ID,
               {
                 provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 // Whether the display name should be displayed in the Sign Up page.
                 requireDisplayName: true
-              },
-              {
-                provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-                recaptchaParameters: {
-                  type: 'image',
-                  size: 'invisible',
-                  badge: 'bottomleft'
-                }
               }
             ],
             // Terms of service url.
@@ -86,6 +73,13 @@
 
         }
       })
+
+      $(document).ready(function(){
+        arabify()
+        getNav()
+        getFooter()
+      })
+
     }
   </script>
 
@@ -101,12 +95,11 @@
     <br>
     <div class="row">
       <div class="col l4 push-l4 m6 push-m3 s10 push-s1">
-        <div class="card blue-grey">
+
           <br><br>
           <div id="firebaseui-auth-container"></div>
           <div id="loader">جاري التحميل</div>
           <br><br>
-        </div>
       </div>
     </div>
     <mfooter></mfooter>
