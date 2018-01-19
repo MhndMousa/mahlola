@@ -69,7 +69,7 @@ function getSideNav() {
       $('<li>').append(
         $('<div>', {class:"userView"}).append([
           $('<div>', {class:"background", id: "side-nav-background"}).append($('<img>' ,{src: "https://4.bp.blogspot.com/--NkLOnsQtMc/Voe2VuTrHgI/AAAAAAAAxrE/qV7WcTpRxik/s1600/Materail_wallpaper2.png"})),
-          $('<a>').append($('<img>', {class: "circle", id:"user_photo" ,src:"https://www.nct.org.au/wp-content/themes/Nature%20Conservation%20Trust/img/user_image_placeholder.jpg"})),
+          $('<a>').append($('<img>', {class: "circle", id:"user_photo" ,src:"https://upload.wikimedia.org/wikipedia/en/3/38/Avatarjakeneytiri.jpg"})),
           $('<a>').append($('<span>',{class: "white-text name", id:"user_name"}).html("no display name")),
           $('<a>').append($('<span>',{class: "white-text email", id:"user_email" }).html("no email")),
         ]))
@@ -210,9 +210,9 @@ function getAds(){
     snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
       var childData = childSnapshot.val();
-      console.log(key);
-      console.log(childData);
-      console.log(key,childData);
+      // console.log(key);
+      // console.log(childData);
+      // console.log(key,childData);
 
       if (col< 3) col++
       else addRow()
@@ -262,11 +262,16 @@ function getAds(){
         )
       }
 
+animationActivate()
+
+
+
       function addMarker() {
         if (childData.location.long && childData.location.lat){
-
-          var uluru = {lat: 1, lng: 1};
-
+          // console.log(childData.location.long, childData.location.lat);
+          var uluru =new google.maps.LatLng(childData.location.long, childData.location.long);
+          console.log(uluru);
+          console.log('map'+row+col);
           var map = new google.maps.Map(document.getElementById('map'+row+col), {
             zoom: 12  ,
             center: uluru,
@@ -274,12 +279,13 @@ function getAds(){
             draggable: true,
             zoomControl: true
           });
-          var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
-          });
-
+        //   var marker = new google.maps.Marker({
+        //     position: uluru,
+        //     map: map
+        //   });
+        //
         }
+
 
           //     var uluru = {lat:26.319322 , lng: 26.319322};
           //     var maps = {}
@@ -305,7 +311,7 @@ function getAds(){
   });
 
   animationActivate()
-  // Materialize.toast('All ads downloaded!', 4000) // 4000 is the duration of the toast
+  Materialize.toast('All ads downloaded!', 4000) // 4000 is the duration of the toast
 
 }
 
@@ -382,7 +388,8 @@ function initApp(){
   // getDropDown()
   getSideNav()
   userGreeting()
-  // animationActivate()
+  // getAds()
+  animationActivate()
 
   firebase.auth().onAuthStateChanged(function(user){
     console.log(user);
