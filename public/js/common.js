@@ -41,19 +41,29 @@ function getNav(){
 function getTabs() {
   $('.nav-extended').append(
     $('<div>',{class: "nav-content arabic z-depth-1"}).append(
-      $('<ul>',{class: "tabs tabs-transparent"}).append([
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#test"}).html("اعمال منزلية")),
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#test2"}).html("اعمال بطريق")),
-        $('<li>',{class: "tab disabled"}).append($('<a>',{href: "#"}).html("اعمال هندسية")),
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال الكترونية")),
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 2")),
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 3")),
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 4")),
-        $('<li>',{class: "tab"}).append($('<a>',{href: "#"}).html("اعمال 5")),
-
-      ])
+      $('<ul>',{class: "tabs tabs-transparent"})
     )
   )
+
+  var tabs = firebase.database().ref("tabs");
+  tabs.once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+      // console.log(key);
+      // console.log(childData);
+      // console.log(key,childData);
+
+
+      $('.tabs').append([
+        $('<li>',{class: "tab"}).append($('<a>',{href: childData.type}).html(childData.name)),
+      ])
+    });
+  });
+
+
+
 }
 
 // Dectects weather a user logged in or not and formats side nav accordingly
@@ -110,97 +120,97 @@ function getSideNav() {
 
   // Formats User drop down menu
 
-function getLoginButton(){
-  /*
-  Drop Down
-  */
-  // User login button
-  $('.nav-wrapper').append(
-    $('<ul/>',{class: "right"}).append(
-      $('<li/>').append($('<a/>',{ href: "login.html", class: "dropdown-button "+ colors.text + colors.textAccentHeader}).html("تسجيل الدخول"))
+  function getLoginButton(){
+    /*
+    Drop Down
+    */
+    // User login button
+    $('.nav-wrapper').append(
+      $('<ul/>',{class: "right"}).append(
+        $('<li/>').append($('<a/>',{ href: "login.html", class: "dropdown-button "+ colors.text + colors.textAccentHeader}).html("تسجيل الدخول"))
+      )
     )
-  )
-}
+  }
 
-// Formats floating Button
-function getFloatingButton() {
-  $('body').append(
-    $('<div>',{class: "fixed-action-btn toolbar"}).append([
-      $('<a>', {class: "btn-floating btn-large blue-grey hoverable"}).append(
-        $('<i>', {class: "material-icons waves-effect waves-light"}).html('publish')
-        // $('<i>').html("اعلن")
-      ),
-      $('<ul>').append([
-        $('<li>', {class: "waves-light waves-effect"}).append(
-          // $('<a>').append($('<i>', {class:"material-icons"}).html("ابحث عن احد"))
-          $('<a>').html("اعلن عن عمل")
+  // Formats floating Button
+  function getFloatingButton() {
+    $('body').append(
+      $('<div>',{class: "fixed-action-btn toolbar"}).append([
+        $('<a>', {class: "btn-floating btn-large blue-grey hoverable"}).append(
+          $('<i>', {class: "material-icons waves-effect waves-light"}).html('publish')
+          // $('<i>').html("اعلن")
         ),
-        $('<li>', {class: "waves-light waves-effect"}).append(
-          $('<a>').html("اعلن عن خبرة")
-          // $('<a>').append($('<i>', {class:"material-icons"}).html("احد يبحث عنك"))
-        )
+        $('<ul>').append([
+          $('<li>', {class: "waves-light waves-effect"}).append(
+            // $('<a>').append($('<i>', {class:"material-icons"}).html("ابحث عن احد"))
+            $('<a>').html("اعلن عن عمل")
+          ),
+          $('<li>', {class: "waves-light waves-effect"}).append(
+            $('<a>').html("اعلن عن خبرة")
+            // $('<a>').append($('<i>', {class:"material-icons"}).html("احد يبحث عنك"))
+          )
+        ])
       ])
-    ])
-  )
-}
+    )
+  }
 
-// Formats footer
-function getFooter(){
-  $('mFooter').append(
-    $('<footer>',{ class : "page-footer " + "grey darken-2"} ).append([
-      $('<div>', { class: "container" }).append(
-        $('<div>', {class : "row"}).append([
-          $('<div>', {class: "col l6 s12"}).append([
-            $('<h5>', {class:  colors.text + colors.textAccentHeader}).html("Footer Content"),
-            $('<p>', {class:  colors.text + colors.textAccent }).html("You can use rows and columns here to organize your footer content")
-          ]),
-          $('<div>', {class: "col l4 offset-l2 s12"}).append([
-            $('<h5>', {class:  colors.text +colors.textAccentHeader}).html("Links"),
-            $('<ul>').append([
-              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 1")),
-              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 2")),
-              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 3")),
-              $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 4"))
+  // Formats footer
+  function getFooter(){
+    $('mFooter').append(
+      $('<footer>',{ class : "page-footer " + "grey darken-2"} ).append([
+        $('<div>', { class: "container" }).append(
+          $('<div>', {class : "row"}).append([
+            $('<div>', {class: "col l6 s12"}).append([
+              $('<h5>', {class:  colors.text + colors.textAccentHeader}).html("Footer Content"),
+              $('<p>', {class:  colors.text + colors.textAccent }).html("You can use rows and columns here to organize your footer content")
+            ]),
+            $('<div>', {class: "col l4 offset-l2 s12"}).append([
+              $('<h5>', {class:  colors.text +colors.textAccentHeader}).html("Links"),
+              $('<ul>').append([
+                $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 1")),
+                $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 2")),
+                $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 3")),
+                $('<li>').append($('<a>',{class: colors.text + colors.textAccent, href: "#!" }).html("link 4"))
+              ])
             ])
           ])
-        ])
-      ),
-      $('<div>', {class: "footer-copyright"}).append(
-        $('<div>', {class: "container " + colors.text + colors.textAccentHeader}).html("© 2014 Copyright Text").append(
-          $('<a>', {class: "right " + colors.text + colors.textAccentHeader}).html("More Links")
+        ),
+        $('<div>', {class: "footer-copyright"}).append(
+          $('<div>', {class: "container " + colors.text + colors.textAccentHeader}).html("© 2014 Copyright Text").append(
+            $('<a>', {class: "right " + colors.text + colors.textAccentHeader}).html("More Links")
+          )
         )
-      )
-    ])
-  )
-}
+      ])
+    )
+  }
 
-// Start the all animation on page
-function animationActivate() {
-  $(".dropdown-button").dropdown({
-    belowOrigin: true, // Displays dropdown below the button
-  });
-  $("#slide-out-button").sideNav({
-    menuWidth: 330,
-    draggable: true,
-    closeOnClick: true,
-  });
-  $('ul.tabs').tabs();
-  $('.collapsible').collapsible();
+  // Start the all animation on page
+  function animationActivate() {
+    $(".dropdown-button").dropdown({
+      belowOrigin: true, // Displays dropdown below the button
+    });
+    $("#slide-out-button").sideNav({
+      menuWidth: 330,
+      draggable: true,
+      closeOnClick: true,
+    });
+    $('ul.tabs').tabs();
+    $('.collapsible').collapsible();
 
-  $('.modal').modal({
-       dismissible: true, // Modal can be dismissed by clicking outside of the modal
-       opacity: .5, // Opacity of modal background
-       inDuration: 300, // Transition in duration
-       outDuration: 200, // Transition out duration
-       startingTop: '4%', // Starting top style attribute
-       endingTop: '10%', // Ending top style attribute
-     //   ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-     //     alert("Ready");
-     //     console.log(modal, trigger);
-     //   },
-     //   complete: function() { alert('Closed'); } // Callback for Modal close
-      }
-   );
+    $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '4%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      //   ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+      //     alert("Ready");
+      //     console.log(modal, trigger);
+      //   },
+      //   complete: function() { alert('Closed'); } // Callback for Modal close
+    }
+  );
 
 }
 
@@ -222,20 +232,17 @@ function getModal(){
   $('body').append(
     $('<div>',{class: "modal", id: "modal1"}).append([
       $('<div>', {class: "modal-content"}).append([
-        // $('<h4>').html('Header'),
         $('<div>',{id: "map", style:"width: 100%; height: 300px"})
-      ]),
-      // $('<div>', {class: "modal-footer"}).append(
-      //   $('<a>', {class: "modal-action modal-close btn-flat"})
-      // )
+      ])
     ])
   )
-  getMap()
   animationActivate()
 }
 
 // Gets the ads from the database and orders them by time.
 function getAds(){
+  var counter = 1;
+
 
   var posts = firebase.database().ref("posts").orderByKey();
   posts.once("value")
@@ -249,6 +256,10 @@ function getAds(){
 
       if (col< 3) col++
       else addRow()
+
+      animationActivate()
+      createCard(row)
+
 
       function createCard(row) {
         $('#row'+row).append(
@@ -281,7 +292,9 @@ function getAds(){
                   )
                 ),
                 $('<li>').append(
-                  $('<a>',{class:"collapsible-header waves-effect text-darken-3 " + colors.text , href: "#modal1"}).html("الموقع").append(
+                  $('<a>',{class:"collapsible-header waves-effect text-darken-3 " + colors.text , id: "card"+counter ,href: "#modal1", onclick: "getMap('card" + counter + "');" })
+                  .html("الموقع").val({long: childData.location.long, lat: childData.location.lat})
+                  .append(
                     $('<span>', {class: "truncate badge"}).html(childData.location.city),
                     $('<i>', {class: "material-icons"}).html("place")
                   )
@@ -290,9 +303,9 @@ function getAds(){
             )
           )
         )
+        counter++;
       }
-      animationActivate()
-      createCard(row)
+
     });
   });
 
@@ -300,41 +313,28 @@ function getAds(){
 
 }
 
-// Retrives the map and adds markers from the database
-// TODO: Make map refresh based on the data
-function getMap() {
+// Retrives the map and adds markers from the value of each card and updates the map accordingly
+function getMap(card) {
 
-  var posts = firebase.database().ref("posts").orderByKey();
-  posts.once("value")
-  .then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      var key = childSnapshot.key;
-      var childData = childSnapshot.val();
+  var coordinates = document.getElementById(card).value
 
 
-
-        if (childData.location.long && childData.location.lat){
-          console.log(childData.location.long, childData.location.lat);
-          // console.log(uluru);
-          // console.log('map'+row+col);
-
-          var uluru ={lng: childData.location.long, lat: childData.location.long};
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4  ,
-            center: uluru,
-            disableDefaultUI: true,
-            draggable: true,
-            zoomControl: true
-          });
-            var marker = new google.maps.Marker({
-              position: uluru,
-              map: map
-            });
-
-        }
-
-    });
+  var uluru ={lng: coordinates.long, lat: coordinates.lat};
+  // var uluru ={lng: coordinates.long, lat: coordinates.long};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10  ,
+    center: uluru,
+    disableDefaultUI: true,
+    draggable: true,
+    zoomControl: true
   });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+
+
+    google.maps.event.trigger(map, 'resize');
 
 }
 
@@ -379,11 +379,11 @@ function initApp(){
 
 
   $(window).resize(function() {
-      google.maps.event.trigger(map, 'resize');
+    google.maps.event.trigger(map, 'resize');
   });
 
   firebase.auth().onAuthStateChanged(function(user){
-    console.log(user);
+    // console.log(user);
   });
 
 
