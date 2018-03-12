@@ -334,7 +334,7 @@ function getMap(card) {
   });
 
 
-    google.maps.event.trigger(map, 'resize');
+  google.maps.event.trigger(map, 'resize');
 
 }
 

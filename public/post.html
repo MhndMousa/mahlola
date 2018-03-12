@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Post - Mahlola </title>
+<head>
+  <meta charset="utf-8">
+  <title>Post - Mahlola </title>
 
-    <!-- firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-    <script src="js/common.js"></script>
+  <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script src="js/common.js"></script>
 
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- materializeCss -->
-    <link rel="stylesheet" href="/css/materialize.css">
-    <script src="js/materialize.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- materializeCss -->
+  <link rel="stylesheet" href="/css/materialize.css">
+  <script src="js/materialize.js"></script>
+  <script src="js/post.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Arabic Font -->
-    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
+  <!-- Arabic Font -->
+  <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/earlyaccess/notokufiarabic.css" type="text/css"/>
 
-    <script type="text/javascript">
-      window.onload = function(){
-        $(document).ready(function(){
-          initApp()
-        })
-      }
-    </script>
 
-  </head>
-  <body>
-    <mheader></mheader>
-    <br><br>
-    <h1>This is a post page</h1>
-    <mpost></mpost>
-    <br><br>
-    <mfooter></mfooter>
-  </body>
+
+  <script type="text/javascript">
+  window.onload = function(){
+    $(document).ready(function(){
+      initApp()
+
+      getPostForm()
+    })
+  }
+  </script>
+
+</head>
+<body>
+  <mheader></mheader>
+  <br><br>
+  <!-- <h1>This is a post page</h1> -->
+  <mpost></mpost>
+  <br><br>
+  <mfooter></mfooter>
+</body>
+
 </html>
